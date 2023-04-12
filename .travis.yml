@@ -1,10 +1,11 @@
 sudo: false
 
-install:
+scripts:
   - npm install
-
-build:
   - npm build:win --config config.mac.json
+
+# build:
+#   - npm build:win --config config.mac.json
 
 language: node_js
 node_js:
