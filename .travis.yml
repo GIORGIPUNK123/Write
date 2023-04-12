@@ -1,51 +1,19 @@
-# sudo: false
+sudo: false
 
-# language: node_js
+language: node_js
 
-# node_js:
-#   - 18.12.1
-
-# install:
-#   - npm ci
-
-# build:
-#   - npm build:win --config config.mac.json
-
-# language: node_js
-# node_js:
-#   - "18.12.1"
-
-# os:
-#   - linux
-
-before_install:
-  - |
-    case $TRAVIS_OS_NAME in
-      osx)
-        brew update
-        brew install wine
-        ;;
-      *)
-        echo "Error: Unsupported operating system '$TRAVIS_OS_NAME'"
-        exit 1
-        ;;
-    esac
+node_js:
+  - 18.12.1
 
 install:
-  - npm install
+  - npm ci
 
-script:
-  - npm run build:mac --config buildConfigs/config.mac.json
+build:
+  - npm build:win --config config.mac.json
 
-before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
+language: node_js
+node_js:
+  - "18.12.1"
 
-cache:
-  directories:
-    - node_modules
-    - $HOME/.cache/electron
-    - $HOME/.cache/electron-builder
-
-branches:
-  only:
-    - master
+os:
+  - linux
