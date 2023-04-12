@@ -1,7 +1,7 @@
 sudo: false
 
 install:
-  - npm ci
+  - npm install
 
 build:
   - npm build:win --config config.mac.json
