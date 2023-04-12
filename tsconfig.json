@@ -1,0 +1,7 @@
+{
+  "files": ["./src/custom.d.ts"],
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.web.json" }
+  ]
+}

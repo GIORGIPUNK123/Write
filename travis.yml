@@ -1,0 +1,12 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - 18.12.1
+
+install:
+  - npm ci
+
+build:
+  - npm build:win --config config.mac.json
