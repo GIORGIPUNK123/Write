@@ -9,5 +9,5 @@
     "directories": {
         "output": "dist/mac/"
     },
-    "buildVersion": "0.0 beta"
+    "buildVersion": "0.0.1 beta"
 }
