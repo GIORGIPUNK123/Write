@@ -1,0 +1,13 @@
+{
+    "appId": "CHARA",
+    "productName": "Write",
+    "target": "dmg",
+    "nsis": {
+        "allowToChangeInstallationDirectory": true,
+        "oneClick": false
+    },
+    "directories": {
+        "output": "dist/mac/"
+    },
+    "buildVersion": "0.0 beta"
+}

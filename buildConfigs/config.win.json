@@ -1,0 +1,13 @@
+{
+    "appId": "CHARA",
+    "productName": "Write",
+    "target": "NSIS",
+    "nsis": {
+        "allowToChangeInstallationDirectory": true,
+        "oneClick": false
+    },
+    "directories": {
+        "output": "dist/win/"
+    },
+    "buildVersion": "0.1 beta"
+}

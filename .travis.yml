@@ -2,7 +2,7 @@ sudo: false
 
 scripts:
   - npm install
-  - npm run build:win --config buildConfigs/config.mac.json
+  - npm run build:mac --config buildConfigs/config.mac.json
 
 # build:
 #   - npm build:win --config config.mac.json
