@@ -2,6 +2,9 @@ language: node_js
 node_js:
   - '16.20.0'
 
+before_script:
+  - echo $SECRET_GIT_TOKEN
+
 os:
   - osx
 
@@ -24,7 +27,7 @@ deploy:
   provider: releases
   api_key: $SECRET_GIT_TOKEN
   file: dist/mac/Write-1.0.0-mac.zip
-  skip_cleanup: true
+  cleanup: true
   on:
     repo: GIORGIPUNK123/Write
     branch: development
