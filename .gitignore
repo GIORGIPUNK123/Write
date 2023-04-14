@@ -3,3 +3,4 @@ dist
 *.log*
 # buildConfigs
 downloads
+*.env
