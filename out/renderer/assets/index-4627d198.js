@@ -7607,14 +7607,14 @@ var m = reactDomExports;
 }
 const reset = "";
 const main = "";
-const swordsIcon = "" + new URL("swordsIcon-4fb7860d.svg", import.meta.url).href;
-const typewritericon = "" + new URL("typewritericon-ed28dd48.svg", import.meta.url).href;
-const duelIcon = "" + new URL("duelIcon-6309505d.svg", import.meta.url).href;
-const gearIcon = "" + new URL("gearIcon-7207a137.svg", import.meta.url).href;
-const burgerbarIcon = "" + new URL("burgerbarIcon-e729cadc.svg", import.meta.url).href;
-const storeIcon = "" + new URL("storeIcon-6ea6125e.svg", import.meta.url).href;
-const profileIcon = "" + new URL("profileIcon-da89ff73.svg", import.meta.url).href;
-const goBackIcon = "" + new URL("goBackIcon-ea54bc8f.svg", import.meta.url).href;
+const swordsIcon = "" + new URL("swordsIcon-0d783382.svg", import.meta.url).href;
+const typewritericon = "" + new URL("typewritericon-72a6edf8.svg", import.meta.url).href;
+const duelIcon = "" + new URL("duelIcon-9a30b42a.svg", import.meta.url).href;
+const gearIcon = "" + new URL("gearIcon-02c70f59.svg", import.meta.url).href;
+const burgerbarIcon = "" + new URL("burgerbarIcon-0e722f32.svg", import.meta.url).href;
+const storeIcon = "" + new URL("storeIcon-0ed60118.svg", import.meta.url).href;
+const profileIcon = "" + new URL("profileIcon-beb461b7.svg", import.meta.url).href;
+const goBackIcon = "" + new URL("goBackIcon-5b7b8415.svg", import.meta.url).href;
 /**
  * @remix-run/router v1.5.0
  *

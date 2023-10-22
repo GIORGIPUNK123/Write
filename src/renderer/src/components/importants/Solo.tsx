@@ -5,29 +5,25 @@ import { FinishScreen } from '../FinishScreen';
 import { calculateWPM } from '../../functions/calculateWPM';
 import { TextDisplayBox } from '../TextDisplayBox';
 import { TypeInput } from '../TypeInput';
-import { fetchWords } from '../../functions/fetchWords';
+import useFetchWords from '@renderer/hooks/useFetch';
 
 export const Solo = () => {
-  const [wordsArr, setWordsArr] = useState([]);
-  const [completedWordsCount, setCompletedWordsCount] = useState(0);
+  const { data: wordsArr, loading, error } = useFetchWords(25);  const [completedWordsCount, setCompletedWordsCount] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [difference, setDifference] = useState(0);
   const [isCorrectWord, setIsCorrectWord] = useState(false);
   const staticDifference = useRef(0);
 
   const resetGame = () => {
-    setWordsArr([]);
     setCompletedWordsCount(0);
     setStartTime(0);
     setDifference(0);
     // setIsCorrectWord(false);
     staticDifference.current = 0;
-    fetchWords(5, setWordsArr);
     setStartTime(Math.round(Date.now() / 1000));
   };
 
   useEffect(() => {
-    fetchWords(25, setWordsArr);
     setStartTime(Math.round(Date.now() / 1000));
   }, []);
 
@@ -95,6 +91,10 @@ export const Solo = () => {
   const isCorrectWordChange = (correctness: boolean) => {
     setIsCorrectWord(correctness);
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
 
   return (
     <>
