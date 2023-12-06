@@ -2,15 +2,15 @@
 <html class="dark">
   <head>
     <meta charset="UTF-8" />
+
     <title>Write</title>
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
 
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' *"
+      content="default-src 'self'; script-src 'self' https://apis.google.com https://*.firebaseapp.com https://www.gstatic.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; connect-src 'self' * https://*.firebaseio.com; img-src 'self' https://www.facebook.com; frame-src 'self' https://write-c0c34.firebaseapp.com;"
     />
   </head>
-
   <body>
     <div class="h-full w-full" id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

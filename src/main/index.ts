@@ -13,6 +13,7 @@ function createWindow(): void {
     // maxHeight: 550,
     show: false,
     autoHideMenuBar: true,
+
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       nodeIntegration: true,
@@ -20,6 +21,8 @@ function createWindow(): void {
       webSecurity: false,
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
+      // nat,
+      // nativeWindowOpen: true, // ADD THIS
     },
   });
 

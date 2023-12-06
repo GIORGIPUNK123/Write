@@ -19,6 +19,8 @@ function createWindow() {
       webSecurity: false,
       preload: path.join(__dirname, "../preload/index.js"),
       sandbox: false
+      // nat,
+      // nativeWindowOpen: true, // ADD THIS
     }
   });
   mainWindow.on("ready-to-show", () => {

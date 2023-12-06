@@ -5,6 +5,7 @@ import {
   defineViteConfig,
 } from 'electron-vite';
 import react from '@vitejs/plugin-react';
+import mkcert from 'vite-plugin-mkcert';
 
 export default defineConfig({
   main: {
@@ -38,7 +39,8 @@ export default defineConfig({
             '@renderer': resolve('src/renderer/src'),
           },
         },
-        plugins: [react()],
+        server: { https: true },
+        plugins: [react(), mkcert()],
       };
     }
   }),

@@ -14,6 +14,7 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
     console.log('isClicked: ', isClicked);
     setIsClicked((prevIsClicked) => !prevIsClicked);
   };
+  userAuth;
   if (props.loggedIn) {
     return (
       <header>
