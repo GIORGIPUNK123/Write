@@ -1,20 +1,32 @@
-const name = 'giorgi';
 import gearIcon from '../../images/gearIcon.svg';
+import logOutIcon from '../../images/logOutIcon.svg';
 import burgerbarIcon from '../../images/burgerbarIcon.svg';
 import storeIcon from '../../images/storeIcon.svg';
 import profileIcon from '../../images/profileIcon.svg';
 import goBackIcon from '../../images/goBackIcon.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserAuth } from '../../context/AuthContext';
+
+const liBaseClass = `py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-primaryDark-800 rounded-md cursor-pointer flex justify-center`;
 
 export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
+  const { logOut, user } = UserAuth();
+
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
   const toggleButton = () => {
     console.log('isClicked: ', isClicked);
     setIsClicked((prevIsClicked) => !prevIsClicked);
   };
-  userAuth;
   if (props.loggedIn) {
     return (
       <header>
@@ -50,9 +62,9 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
           }  z-50 dark:text-white font-sans font-medium text-xl text-center absolute top-16 right-0 w-[30vw] h-[100vh] bg-primaryDark-600`}
         >
           <ul className='flex flex-col mt-4 font-medium'>
-            <li className='py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-primaryDark-800 rounded-md cursor-pointer flex justify-center'>
+            <li className={liBaseClass}>
               <div className='flex text-center items-center'>
-                {name}
+                {user?.displayName}
                 <img
                   src={profileIcon}
                   alt='gearIcon'
@@ -60,7 +72,7 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
                 />
               </div>
             </li>
-            <li className='py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-primaryDark-800 rounded-md cursor-pointer flex justify-center'>
+            <li className={liBaseClass}>
               <div className='flex text-center items-center'>
                 Store
                 <img
@@ -70,12 +82,23 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
                 />
               </div>
             </li>
-            <li className='py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-primaryDark-800 rounded-md cursor-pointer flex justify-center'>
+            <li className={liBaseClass}>
               <div className='flex text-center items-center'>
                 Settings
                 <img
                   src={gearIcon}
                   alt='gearIcon'
+                  className='w-[28px] invert ml-2 mt-1'
+                />
+              </div>
+            </li>
+
+            <li className={liBaseClass} onClick={handleLogOut}>
+              <div className='flex text-center items-center'>
+                Log Out
+                <img
+                  src={logOutIcon}
+                  alt='logOutIcon'
                   className='w-[28px] invert ml-2 mt-1'
                 />
               </div>
