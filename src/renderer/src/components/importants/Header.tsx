@@ -30,18 +30,18 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
   if (props.loggedIn) {
     return (
       <header>
-        <div className='flex justify-between items-center h-16 px-16'>
-          <div className='flex text-center items-center'>
+        <div className='flex items-center justify-between h-16 px-16'>
+          <div className='flex items-center text-center'>
             {props.goBack ? (
               <img
                 src={goBackIcon}
-                className='mr-5 w-12 cursor-pointer'
+                className='w-12 mr-5 cursor-pointer'
                 onClick={() => {
                   navigate(-1);
                 }}
               />
             ) : null}
-            <h1 className='dark:text-white font-sans font-medium text-2xl'>
+            <h1 className='font-sans text-2xl font-medium dark:text-white'>
               Write
             </h1>
           </div>
@@ -51,7 +51,7 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
             <img
               onClick={toggleButton}
               src={burgerbarIcon}
-              className='invert w-14 aspect-square cursor-pointer'
+              className='cursor-pointer invert w-14 aspect-square'
               alt='burgerbarIcon'
             />
           </div>
@@ -62,28 +62,33 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
           }  z-50 dark:text-white font-sans font-medium text-xl text-center absolute top-16 right-0 w-[30vw] h-[100vh] bg-primaryDark-600`}
         >
           <ul className='flex flex-col mt-4 font-medium'>
-            <li className={liBaseClass}>
-              <div className='flex text-center items-center'>
+            <li
+              className={liBaseClass}
+              onClick={() => {
+                navigate('/profile');
+              }}
+            >
+              <div className='flex items-center text-center'>
                 {user?.displayName}
                 <img
                   src={profileIcon}
-                  alt='gearIcon'
+                  alt='profileIcon'
                   className='w-[28px] invert ml-2 mt-1'
                 />
               </div>
             </li>
             <li className={liBaseClass}>
-              <div className='flex text-center items-center'>
+              <div className='flex items-center text-center'>
                 Store
                 <img
                   src={storeIcon}
-                  alt='gearIcon'
+                  alt='storeIcon'
                   className='w-[28px] invert ml-2 mt-1'
                 />
               </div>
             </li>
             <li className={liBaseClass}>
-              <div className='flex text-center items-center'>
+              <div className='flex items-center text-center'>
                 Settings
                 <img
                   src={gearIcon}
@@ -94,7 +99,7 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
             </li>
 
             <li className={liBaseClass} onClick={handleLogOut}>
-              <div className='flex text-center items-center'>
+              <div className='flex items-center text-center'>
                 Log Out
                 <img
                   src={logOutIcon}
@@ -109,14 +114,14 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
     );
   } else
     return (
-      <header className='dark:bg-primaryDark flex justify-between items-center h-16 px-16'>
-        <h1 className='dark:text-white font-sans font-medium text-2xl'>
+      <header className='flex items-center justify-between h-16 px-16 dark:bg-primaryDark'>
+        <h1 className='font-sans text-2xl font-medium dark:text-white'>
           Write
         </h1>
         <div></div>
         <button
           type='button'
-          className='dark:bg-buttonDark dark:text-white font-sans font-medium h-10 w-24 rounded-md'
+          className='w-24 h-10 font-sans font-medium rounded-md dark:bg-buttonDark dark:text-white'
         >
           Default
         </button>

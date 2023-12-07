@@ -5,6 +5,7 @@ import {
   signOut,
   onAuthStateChanged,
   User,
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { authentication } from '../firebase-config';
 
@@ -28,6 +29,10 @@ export const AuthContextProvider = ({ children }) => {
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(authentication, provider);
+  };
+
+  const signInNormally = (email: string, password: string) => {
+    signInWithEmailAndPassword(authentication, email, password);
   };
 
   const logOut = () => {
