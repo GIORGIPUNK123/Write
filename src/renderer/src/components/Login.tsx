@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
+import { AuthInput } from '../atoms/AuthInput';
+import { AuthBtn } from '../atoms/AuthBtn';
+import { GoogleButton } from 'react-google-button';
+
 export const Login = () => {
   const navigate = useNavigate();
   const { googleSignIn, user } = UserAuth();
@@ -20,14 +24,35 @@ export const Login = () => {
   }, [user]);
 
   return (
-    <div>
-      <h1 className='text-white text-2xl font-medium'>Click On it</h1>;
-      <button
-        className='rounded-md w-44 h-12 bg-orange hover:bg-orange-400 transition-colors font-medium'
-        onClick={handleGoogleSignIn}
-      >
-        This is google login button
-      </button>
+    <div className='flex flex-col items-center'>
+      <h2 className='mt-8 mb-8 text-4xl text-white'>Login</h2>
+      <div className='px-20 w-full md:w-3/4'>
+        <div className='mb-8'>
+          <AuthInput
+            labelName='Email'
+            type='text'
+            placeholder='Email'
+            required
+          />
+        </div>
+
+        <div className='mt-8'>
+          <AuthInput
+            labelName='Password'
+            type='password'
+            placeholder='Password'
+            required
+          />
+        </div>
+      </div>
+      <div className='mt-8'>
+        <AuthBtn text='Log In' />
+      </div>
+      <div className='mt-4'>
+        <GoogleButton type='dark' onClick={handleGoogleSignIn}>
+          Log in with google
+        </GoogleButton>
+      </div>
     </div>
   );
 };
