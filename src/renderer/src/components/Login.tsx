@@ -7,11 +7,11 @@ export const Login = () => {
   const navigate = useNavigate();
   const { googleSignIn, user } = UserAuth();
 
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignIn = () => {
     try {
-      await googleSignIn();
-    } catch (error) {
-      console.log(error);
+      googleSignIn();
+    } catch (err) {
+      console.log(err);
     }
   };
 

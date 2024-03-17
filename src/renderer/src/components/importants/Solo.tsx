@@ -5,10 +5,11 @@ import { FinishScreen } from '../FinishScreen';
 import { calculateWPM } from '../../functions/calculateWPM';
 import { TextDisplayBox } from '../TextDisplayBox';
 import { TypeInput } from '../TypeInput';
-import useFetchWords from '@renderer/hooks/useFetch';
+import useFetchWords from '../../hooks/useFetch';
 
 export const Solo = () => {
-  const { data: wordsArr, loading, error } = useFetchWords(25);  const [completedWordsCount, setCompletedWordsCount] = useState(0);
+  const { data: wordsArr, loading, error } = useFetchWords(25);
+  const [completedWordsCount, setCompletedWordsCount] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [difference, setDifference] = useState(0);
   const [isCorrectWord, setIsCorrectWord] = useState(false);
@@ -94,7 +95,6 @@ export const Solo = () => {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
 
   return (
     <>

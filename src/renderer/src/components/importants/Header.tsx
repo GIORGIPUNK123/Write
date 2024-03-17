@@ -24,7 +24,6 @@ export const Header = (props: { loggedIn: boolean; goBack: boolean }) => {
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
   const toggleButton = () => {
-    console.log('isClicked: ', isClicked);
     setIsClicked((prevIsClicked) => !prevIsClicked);
   };
   if (props.loggedIn) {

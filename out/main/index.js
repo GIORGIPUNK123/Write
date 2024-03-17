@@ -14,7 +14,7 @@ function createWindow() {
     autoHideMenuBar: true,
     ...process.platform === "linux" ? { icon } : {},
     webPreferences: {
-      nodeIntegration: true,
+      // nodeIntegration: true,
       contextIsolation: false,
       webSecurity: false,
       preload: path.join(__dirname, "../preload/index.js"),
@@ -23,6 +23,9 @@ function createWindow() {
       // nativeWindowOpen: true, // ADD THIS
     }
   });
+  mainWindow.webContents.setUserAgent(
+    "Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36"
+  );
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();
   });
@@ -30,7 +33,9 @@ function createWindow() {
     electron.shell.openExternal(details.url);
     return { action: "deny" };
   });
-  mainWindow.loadURL("file://" + __dirname + "/app/index.html");
+  mainWindow.loadURL("file://" + __dirname + "/app/index.html", {
+    userAgent: "Chrome"
+  });
   if (utils.is.dev && process.env["ELECTRON_RENDERER_URL"]) {
     mainWindow.loadURL(process.env["ELECTRON_RENDERER_URL"]);
   } else {
