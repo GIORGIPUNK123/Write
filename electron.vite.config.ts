@@ -14,34 +14,26 @@ export default defineConfig({
   preload: {
     plugins: [externalizeDepsPlugin()],
   },
-  // renderer: {
-  //   resolve: {
-  //     alias: {
-  //       '@renderer': resolve('out/renderer'),
-  //     },
-  //   },
-  //   plugins: [react()],
-  // },
   renderer: defineViteConfig(({ command }) => {
+    const shared = {
+      resolve: {
+        alias: {
+          '@renderer': resolve('src/renderer/src'),
+        },
+      },
+    };
+
     if (command === 'build') {
       return {
-        resolve: {
-          alias: {
-            '@renderer': resolve('out/renderer'),
-          },
-        },
+        ...shared,
         plugins: [react()],
       };
-    } else {
-      return {
-        resolve: {
-          alias: {
-            '@renderer': resolve('src/renderer/src'),
-          },
-        },
-        server: { https: true },
-        plugins: [react(), mkcert()],
-      };
     }
+
+    return {
+      ...shared,
+      server: { https: true },
+      plugins: [react(), mkcert()],
+    };
   }),
 });

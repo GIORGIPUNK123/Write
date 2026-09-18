@@ -12,10 +12,12 @@ function createWindow() {
     // maxHeight: 550,
     show: false,
     autoHideMenuBar: true,
+    // nodeIntegration: true,
+    // javascript: true,
     ...process.platform === "linux" ? { icon } : {},
     webPreferences: {
-      // nodeIntegration: true,
-      contextIsolation: false,
+      nodeIntegration: true,
+      contextIsolation: true,
       webSecurity: false,
       preload: path.join(__dirname, "../preload/index.js"),
       sandbox: false

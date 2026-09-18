@@ -5,7 +5,7 @@ import {
   signOut,
   onAuthStateChanged,
   User,
-  // signInWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { authentication, db } from '../firebase-config';
 import {
@@ -24,6 +24,7 @@ interface AuthContextType {
   logOut: () => void;
   user: User | null;
   userAdditionalInfo: userDbType | null;
+  signInNormally: (email: string, password: string) => void;
 }
 
 // Provide the context type when creating the context
@@ -32,6 +33,7 @@ const AuthContext = createContext<AuthContextType>({
   logOut: () => {},
   user: null,
   userAdditionalInfo: null,
+  signInNormally: (_email: string, _password: string) => {},
 });
 
 export const AuthContextProvider = ({ children }) => {
@@ -44,9 +46,9 @@ export const AuthContextProvider = ({ children }) => {
     signInWithRedirect(authentication, provider);
   };
 
-  // const signInNormally = (email: string, password: string) => {
-  //   signInWithEmailAndPassword(authentication, email, password);
-  // };
+  const signInNormally = (email: string, password: string) => {
+    signInWithEmailAndPassword(authentication, email, password);
+  };
 
   const logOut = async () => {
     await signOut(authentication);
@@ -103,7 +105,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ googleSignIn, logOut, user, userAdditionalInfo }}
+      value={{ googleSignIn, logOut, user, userAdditionalInfo, signInNormally }}
     >
       {children}
     </AuthContext.Provider>

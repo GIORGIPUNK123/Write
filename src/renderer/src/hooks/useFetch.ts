@@ -1,27 +1,23 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import { getRandomWords } from '../data/wordList';
 
 const useFetchWords = (amount: number) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchWords = async () => {
-      try {
-        const response = await axios.get(
-          `https://random-word-api.vercel.app/api?words=${amount}`
-        );
-        setData(response.data);
-        setLoading(false);
-      } catch (err: any) {
-        setError(err);
-        setLoading(false);
-      }
-    };
-
-    fetchWords();
-  }, [amount]); // re-run the effect whenever the amount changes
+    try {
+      setLoading(true);
+      setError(null);
+      setData(getRandomWords(amount));
+    } catch (err: any) {
+      setError(err?.message ?? 'Failed to load words');
+      setData([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [amount]);
 
   return { data, loading, error };
 };

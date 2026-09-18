@@ -26,9 +26,9 @@ export const Home = () => {
     <>
       <Header loggedIn goBack={false} />
       <div className='flex flex-wrap justify-evenly h-full'>
-        <MyBlock name='solo' image={typewritericon} link='./solo' />
-        <MyBlock name='duel' image={duelIcon} link='./solo' />
-        <MyBlock name='ranked' image={swordsIcon} link='./solo' />
+        <MyBlock name='solo' image={typewritericon} link='/solo' />
+        <MyBlock name='duel' image={duelIcon} link='/solo' />
+        <MyBlock name='ranked' image={swordsIcon} link='/solo' />
       </div>
     </>
   );

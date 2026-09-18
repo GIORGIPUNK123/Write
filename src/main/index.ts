@@ -14,10 +14,13 @@ function createWindow(): void {
     show: false,
     autoHideMenuBar: true,
 
+    // nodeIntegration: true,
+    // javascript: true,
+
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
-      // nodeIntegration: true,
-      contextIsolation: false,
+      nodeIntegration: true,
+      contextIsolation: true,
       webSecurity: false,
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,

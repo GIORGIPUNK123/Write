@@ -12,18 +12,28 @@ export const Solo = () => {
   const [completedWordsCount, setCompletedWordsCount] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [difference, setDifference] = useState(0);
-  const [isCorrectWord, setIsCorrectWord] = useState(false);
+  const [isCorrectWord, setIsCorrectWord] = useState(true);
   const staticDifference = useRef(0);
-
+  const [mistakeWords, setMistakeWords] = useState<string[]>([]);
+  // const [currentWord, setCurrentWord] = useState<string>('null');
+  const isFinished =
+    wordsArr.length !== 0 && completedWordsCount === wordsArr.length;
   const resetGame = () => {
     setCompletedWordsCount(0);
     setStartTime(0);
     setDifference(0);
-    // setIsCorrectWord(false);
+    setIsCorrectWord(true);
+    setMistakeWords([]);
     staticDifference.current = 0;
     setStartTime(Math.round(Date.now() / 1000));
   };
+  if (!isCorrectWord) {
+    console.log('isCorrectWord: ', isCorrectWord);
 
+    // setMistakeWords((prevState) => [...prevState, currentWord]);
+  }
+  console.log('mistakeWords: ', mistakeWords);
+  // console.log('currentWord: ', currentWord);
   useEffect(() => {
     setStartTime(Math.round(Date.now() / 1000));
   }, []);
@@ -51,22 +61,25 @@ export const Solo = () => {
           isCorrectWord={isCorrectWord}
         />
         <TypeInput
+          // setCurrentWord={setCurrentWord}
           wordsArr={wordsArr}
           completedWordsCount={completedWordsCount}
           countChange={onCompletedWordsCountChange}
-          correctWordChange={isCorrectWordChange}
+          setIsCorrectWord={setIsCorrectWord}
+          setMistakeWords={setMistakeWords}
+          mistakeWords={mistakeWords}
         />
       </div>
     );
   };
   const renderFinishScreen = () => {
-    if (wordsArr.length !== 0 && completedWordsCount === wordsArr.length) {
+    if (isFinished) {
       return (
         <FinishScreen
-          className={`${
-            completedWordsCount !== wordsArr.length ? 'hidden' : ''
-          }`}
-          wpm={calculateWPM(completedWordsCount, staticDifference.current)}
+          className=''
+          mistakeWords={mistakeWords}
+          completedWordsCount={completedWordsCount}
+          staticDifferenceCurrent={staticDifference.current}
           onPlayAgain={resetGame}
         />
       );
@@ -88,9 +101,6 @@ export const Solo = () => {
   );
   const onCompletedWordsCountChange = (count: number) => {
     setCompletedWordsCount(count);
-  };
-  const isCorrectWordChange = (correctness: boolean) => {
-    setIsCorrectWord(correctness);
   };
 
   if (loading) return <div>Loading...</div>;
